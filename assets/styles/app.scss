@@ -8,10 +8,10 @@ body{
 
 .bodydiv{
     background-image: url("../images/bg_body_paris.jpg");
-    background-repeat: no-repeat ;
-    background-position: bottom right;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    height: 100vh;
     width: 100%;
-    height: 95vh;
 }
 
 .selectors > div {
@@ -24,24 +24,16 @@ body{
 
 .blocknano {
     text-align: center;
+    height: 100%;
+    background-color: rgb(255 255 255 / 90%);
 }
 
 .blocknano > div {
-    margin-top: 15%;
+    margin-top: 5%;
     width: 300px;
     display: inline-block;
     text-align: left;
 }
-@media (max-width: 768px) {
-    .blocknano > div {
-        margin-top: 3p;
-    }
-    .bodydiv{
-        background-position: bottom center;
-    }
-}
-
-
 .selectors > div:hover{
     color: #EA4C89;
     cursor: pointer;
