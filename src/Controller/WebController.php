@@ -18,6 +18,29 @@ class WebController extends AbstractController
         ];
     }
 
+    #[Route('/addfauxreponse/{question}', name: 'web_add_faux_reponse')]
+    public function addFauxreponse(QuestionsRepository $questionsRepository, Questions $questions = null): JsonResponse{
+        if($questions) {
+            $questions->setNReponse(0);
+            $questionsRepository->save($questions, true);
+        }
+        return new JsonResponse([
+            'questions' => $questions->getNReponse()
+        ]);
+    }
+
+    #[Route('/addrighreponse/{question}', name: 'web_add_right_reponse')]
+    public function addRightreponse(QuestionsRepository $questionsRepository, Questions $questions = null): JsonResponse{
+        if($questions) {
+            $questions->setNReponse(($questions->getNReponse() ? $questions->getNReponse() : 0)   + 1);
+            $questionsRepository->save($questions, true);
+        }
+
+        return new JsonResponse([
+            'questions' => $questions?->getNReponse()
+        ]);
+    }
+
     #[Route('/ajaxmots', name: 'web_home_ajax')]
     public function getMotsAjax(QuestionsRepository $questionsRepository) : JsonResponse{
         /** @var Questions $questionInfo */

@@ -24,6 +24,9 @@ class Questions
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Results::class)]
     private Collection $results;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $nReponse = null;
+
     public function __construct()
     {
         $this->results = new ArrayCollection();
@@ -84,6 +87,18 @@ class Questions
                 $result->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNReponse(): ?int
+    {
+        return $this->nReponse;
+    }
+
+    public function setNReponse(?int $nReponse): self
+    {
+        $this->nReponse = $nReponse;
 
         return $this;
     }

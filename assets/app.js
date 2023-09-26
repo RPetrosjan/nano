@@ -34,12 +34,28 @@ function makeProgress(){
 
 let reponse = null;
 let right = null;
+let question = null;
+
 function reDom(){
     $('.selectors>div').click(function (){
         $('.selectors>div').removeClass('select');
         reponse = $(this).text();
         $(this).addClass('select')
     });
+}
+
+function sendAjaxReponse(type, reponse){
+    let url = ''
+    if(type == false){
+        url ='/addfauxreponse/'+reponse;
+    }
+    else{
+        url ='/addrighreponse/'+reponse;
+    }
+
+    $.post(url, function (data) {
+
+    })
 }
 
 function getQuestion(){
@@ -51,6 +67,7 @@ function getQuestion(){
             htmlValues += '<div>'+value+'</div>';
         });
         right = data.right;
+        question = data.question;
         $('.selectors').html(htmlValues);
         reDom();
     });
@@ -75,10 +92,13 @@ window.onload = function() {
                     $('#showalert').addClass('alert-success');
                     $('#showalert>strong').text('Bravo!');
                     rht ++;
+                    sendAjaxReponse(true, question);
+                    console.log()
                 } else {
                     $('#showalert').addClass('alert-danger');
                     $('#showalert>strong').text('Zut!'+ ' - '+right);
                     fht ++;
+                    sendAjaxReponse(false, question);
                 }
                 makeProgress();
                 $('#showalert').addClass('show');

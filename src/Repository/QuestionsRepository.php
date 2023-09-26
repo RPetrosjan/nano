@@ -54,6 +54,7 @@ class QuestionsRepository extends ServiceEntityRepository
 
     public function getQuestion(){
         return $this->createQueryBuilder('db')
+            ->where('db.nReponse < 5')
             ->orderBy('RAND()', Criteria::DESC)
             ->setMaxResults(1)
             ->getQuery()
