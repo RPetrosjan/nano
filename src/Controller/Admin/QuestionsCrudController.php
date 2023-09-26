@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Questions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class QuestionsCrudController extends AbstractCrudController
@@ -18,6 +19,7 @@ class QuestionsCrudController extends AbstractCrudController
         return [
             TextField::new('question'),
             TextField::new('reponse'),
+            IntegerField::new('nReponse')
         ];
     }
 }
