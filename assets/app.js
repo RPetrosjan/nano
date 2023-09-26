@@ -12,6 +12,26 @@ import './styles/app.scss';
 import './bootstrap';
 const bootstrap = require('bootstrap');
 
+let total = 15;
+let rht = 0;
+let fht = 0;
+
+function intitilize(){
+    total = 15;
+    rht = 0;
+    fht = 0;
+}
+
+function makeProgress(){
+    let procent_rht = rht * 100 / total;
+    let procet_fht = fht * 100 / total;
+
+    $('#rht').width(procent_rht+'%').text(rht);
+    $('#fht').width(procet_fht+'%').text(fht);
+    $('#step').text(rht+fht);
+    $('#qtotal').text(total);
+}
+
 let reponse = null;
 let right = null;
 function reDom(){
@@ -39,21 +59,28 @@ function getQuestion(){
 window.onload = function() {
     if (window.jQuery) {
         getQuestion();
+        makeProgress();
         $('#valider').click(function (){
             if( $('#showalert').hasClass('show')) {
                 $('#showalert').removeClass('show');
                 getQuestion();
                 $('#valider').text('Valider');
+                if(fht+rht >=total){
+                    intitilize();
+                }
             }
             else {
                 $('#showalert').removeClass('alert-danger').removeClass('alert-success');
                 if (reponse == right) {
                     $('#showalert').addClass('alert-success');
                     $('#showalert>strong').text('Bravo!');
+                    rht ++;
                 } else {
                     $('#showalert').addClass('alert-danger');
                     $('#showalert>strong').text('Zut!'+ ' - '+right);
+                    fht ++;
                 }
+                makeProgress();
                 $('#showalert').addClass('show');
                 $('#valider').text('Suivant');
             }
