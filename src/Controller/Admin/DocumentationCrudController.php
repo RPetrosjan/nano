@@ -18,15 +18,8 @@ class DocumentationCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextEditorField::new('text')->setTrixEditorConfig([
-                'blockAttributes' => [
-                    'default' => ['tagName' => 'p'],
-                    'heading1' => ['tagName' => 'h2'],
-                ],
-                'css' => [
-                    'attachment' => 'admin_file_field_attachment',
-                ],
-            ]),
+            TextField::new('title'),
+            TextEditorField::new('text'),
         ];
     }
 
