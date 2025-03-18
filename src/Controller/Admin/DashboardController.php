@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Questions;
+use App\Entity\TypeSection;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -44,6 +45,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Questions', 'fa fa-home', Questions::class);
+        yield MenuItem::linkToCrud('Type Section', 'fa fa-home', TypeSection::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

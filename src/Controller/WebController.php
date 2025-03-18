@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Questions;
+use App\Entity\Reponses;
+use App\Entity\TypeSection;
 use App\Repository\QuestionsRepository;
+use App\Repository\TypeSectionRepository;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,8 +16,11 @@ class WebController extends AbstractController
 {
     #[Route('/', name: 'web_home_nano')]
     #[Template('web_home.html.twig')]
-    public function index(){
+    public function index(TypeSectionRepository $typeSectionRepository){
+
+        $typeSection = $typeSectionRepository->getSectionRandom();
         return [
+            'typeSection' => $typeSection,
         ];
     }
 
@@ -41,19 +47,28 @@ class WebController extends AbstractController
         ]);
     }
 
-    #[Route('/ajaxmots', name: 'web_home_ajax')]
-    public function getMotsAjax(QuestionsRepository $questionsRepository) : JsonResponse{
+    #[Route('/ajaxmots/{typeSection}/{numero}', name: 'web_home_ajax')]
+    public function getMotsAjax(TypeSection $typeSection, int $numero = 0) : JsonResponse{
+
         /** @var Questions $questionInfo */
-        $questionInfo = $questionsRepository->getQuestion();
-        $reponsesInfo = $questionsRepository->getReponses($questionInfo->getId());
-        $reponsesInfo[] = $questionInfo->getReponse();
+        $questionInfo = $typeSection->getQuestions()[$numero];
+
+        $reponsesInfo = array_map(function (Reponses $reponse) {
+            return [
+                'reponse' => $reponse->getReponse(),
+                'iscorrect' => $reponse->isIsCorrect(),
+            ];
+        }, $questionInfo->getReponses()->toArray());
+
         shuffle($reponsesInfo);
         return new JsonResponse([
-            'right' => $questionInfo->getReponse(),
+            'max' => sizeof($typeSection->getQuestions()),
+            'typeSection' => $questionInfo->getTypeSection()->getTitle(),
             'question' => $questionInfo->getQuestion(),
-            'reponses' => $reponsesInfo
+            'reponses' => $reponsesInfo,
         ], headers: [
             'Content-Type' => 'application/json; charset=UTF-8'
         ]);
+
     }
 }

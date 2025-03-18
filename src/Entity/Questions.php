@@ -18,18 +18,22 @@ class Questions
     #[ORM\Column(length: 255)]
     private ?string $question = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $reponse = null;
-
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Results::class)]
     private Collection $results;
 
     #[ORM\Column(nullable: true)]
     private ?int $nReponse = null;
 
+    #[ORM\OneToMany(mappedBy: 'questions', targetEntity: Reponses::class, cascade: ['persist'], orphanRemoval: true)]
+    private Collection $reponses;
+
+    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'questions')]
+    private ?TypeSection $typeSection = null;
+
     public function __construct()
     {
         $this->results = new ArrayCollection();
+        $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -45,18 +49,6 @@ class Questions
     public function setQuestion(string $question): self
     {
         $this->question = $question;
-
-        return $this;
-    }
-
-    public function getReponse(): ?string
-    {
-        return $this->reponse;
-    }
-
-    public function setReponse(string $reponse): self
-    {
-        $this->reponse = $reponse;
 
         return $this;
     }
@@ -99,6 +91,48 @@ class Questions
     public function setNReponse(?int $nReponse): self
     {
         $this->nReponse = $nReponse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reponses>
+     */
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function addReponse(Reponses $reponse): static
+    {
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses->add($reponse);
+            $reponse->setQuestions($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReponse(Reponses $reponse): static
+    {
+        if ($this->reponses->removeElement($reponse)) {
+            // set the owning side to null (unless already changed)
+            if ($reponse->getQuestions() === $this) {
+                $reponse->setQuestions(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getTypeSection(): ?TypeSection
+    {
+        return $this->typeSection;
+    }
+
+    public function setTypeSection(?TypeSection $typeSection): static
+    {
+        $this->typeSection = $typeSection;
 
         return $this;
     }

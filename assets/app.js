@@ -16,6 +16,8 @@ let total = 15;
 let rht = 0;
 let fht = 0;
 
+let numeroQuestion = 0;
+
 function intitilize(){
     total = 15;
     rht = 0;
@@ -32,14 +34,11 @@ function makeProgress(){
     $('#qtotal').text(total);
 }
 
-let reponse = null;
-let right = null;
 let question = null;
 
 function reDom(){
     $('.selectors>div').click(function (){
         $('.selectors>div').removeClass('select');
-        reponse = $(this).text();
         $(this).addClass('select')
     });
 }
@@ -59,18 +58,28 @@ function sendAjaxReponse(type, reponse){
 }
 
 function getQuestion(){
-    $.post( "/ajaxmots", function( data ) {
-        $('.title').text(data.question);
-        $('.titleshadow').text(data.question);
-        let htmlValues = '';
-        data.reponses.forEach(function (value){
-            htmlValues += '<div>'+value+'</div>';
+
+    let url = "/ajaxmots/"+$('#typeSection').attr('idtype')+"/"+numeroQuestion;
+
+    if(numeroQuestion >= 0)
+    {
+        $.post( url, function( data ) {
+            numeroQuestion++;
+            if(numeroQuestion  === data.max) {
+                numeroQuestion = -1;
+            }
+            $('.title').text(data.question);
+            $('.titleshadow').text(data.question);
+            let htmlValues = '';
+            data.reponses.forEach(function (data){
+                htmlValues += '<div correct="'+data.iscorrect+'">'+data.reponse+'</div>';
+            });
+            question = data.question;
+            $('.selectors').html(htmlValues);
+            reDom();
         });
-        right = data.right;
-        question = data.question;
-        $('.selectors').html(htmlValues);
-        reDom();
-    });
+    }
+
 }
 
 window.onload = function() {
@@ -88,15 +97,18 @@ window.onload = function() {
             }
             else {
                 $('#showalert').removeClass('alert-danger').removeClass('alert-success');
-                if (reponse == right) {
+
+                let elementSelect =$('.select');
+                let isCorrect = elementSelect.attr('correct');
+
+                if (isCorrect === 'true') {
                     $('#showalert').addClass('alert-success');
                     $('#showalert>strong').text('Bravo!');
                     rht ++;
                     sendAjaxReponse(true, question);
-                    console.log()
                 } else {
                     $('#showalert').addClass('alert-danger');
-                    $('#showalert>strong').text('Zut!'+ ' - '+right);
+                    $('#showalert>strong').text('Zut!'+ ' - '+$('[correct=true]').text());
                     fht ++;
                     sendAjaxReponse(false, question);
                 }

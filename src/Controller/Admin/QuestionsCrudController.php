@@ -4,7 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Questions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class QuestionsCrudController extends AbstractCrudController
@@ -16,10 +17,13 @@ class QuestionsCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+
+        $typeSection = AssociationField::new('typeSection')->renderAsNativeWidget();
+        $question = TextField::new('question');
+        $reponses = CollectionField::new('reponses')->useEntryCrudForm();
+
         return [
-            TextField::new('question'),
-            TextField::new('reponse'),
-            IntegerField::new('nReponse')
+            $typeSection, $question, $reponses
         ];
     }
 }
