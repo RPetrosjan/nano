@@ -68,6 +68,8 @@ function getQuestion(){
             if(numeroQuestion  === data.max) {
                 numeroQuestion = -1;
             }
+
+            $('#doc').html(data.doc);
             $('.title').text(data.question);
             $('.titleshadow').text(data.question);
             let htmlValues = '';

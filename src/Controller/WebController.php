@@ -63,6 +63,7 @@ class WebController extends AbstractController
         shuffle($reponsesInfo);
         return new JsonResponse([
             'max' => sizeof($typeSection->getQuestions()),
+            'doc' => $questionInfo->getDocumentation()->getText(),
             'typeSection' => $questionInfo->getTypeSection()->getTitle(),
             'question' => $questionInfo->getQuestion(),
             'reponses' => $reponsesInfo,

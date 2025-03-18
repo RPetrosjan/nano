@@ -22,6 +22,9 @@ class Documentation
     #[ORM\OneToMany(mappedBy: 'documentation', targetEntity: Questions::class)]
     private Collection $questions;
 
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -72,5 +75,22 @@ class Documentation
         }
 
         return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->title;
     }
 }

@@ -7,6 +7,16 @@
              {% if typeSection != null  %}
                 <h2 id="typeSection" idType="{{ typeSection.id }}">{{ typeSection.title }}</h2>
              {% endif %}
+
+             <div class="offcanvas offcanvas-start w-100" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                 <div class="offcanvas-header">
+                     <h5 class="offcanvas-title" id="doc_title"></h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                 </div>
+                 <div id="doc" class="offcanvas-body bg-dark text-white">
+                 </div>
+             </div>
+
              <div id="showalert" class="alert alert-success alert-dismissible fade" role="alert">
                  <strong>Bravo!</strong>
              </div>
@@ -26,9 +36,15 @@
                  <div>Голодный</div>
                  <div>Тянуть</div>
              </div>
-             <button id="valider" class="btn bgred mt-5">
-                 Valider
-             </button>
+
+             <div class="d-flex justify-content-between mt-5">
+                 <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                     View Doc
+                 </button>
+                 <button id="valider" class="btn bgred">
+                     Valider
+                 </button>
+                 </div>
          </div>
      </div>
  {% endblock %}
