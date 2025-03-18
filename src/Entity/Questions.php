@@ -30,6 +30,9 @@ class Questions
     #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'questions')]
     private ?TypeSection $typeSection = null;
 
+    #[ORM\ManyToOne(inversedBy: 'questions')]
+    private ?Documentation $documentation = null;
+
     public function __construct()
     {
         $this->results = new ArrayCollection();
@@ -133,6 +136,18 @@ class Questions
     public function setTypeSection(?TypeSection $typeSection): static
     {
         $this->typeSection = $typeSection;
+
+        return $this;
+    }
+
+    public function getDocumentation(): ?Documentation
+    {
+        return $this->documentation;
+    }
+
+    public function setDocumentation(?Documentation $documentation): static
+    {
+        $this->documentation = $documentation;
 
         return $this;
     }

@@ -14,7 +14,7 @@ final class Version20250318022901 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Create Base pour Nano';
     }
 
     public function up(Schema $schema): void

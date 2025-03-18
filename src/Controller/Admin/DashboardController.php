@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Documentation;
 use App\Entity\Questions;
 use App\Entity\TypeSection;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -46,6 +47,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Questions', 'fa fa-home', Questions::class);
         yield MenuItem::linkToCrud('Type Section', 'fa fa-home', TypeSection::class);
+        yield MenuItem::linkToCrud('Docs', 'fa fa-home', Documentation::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
