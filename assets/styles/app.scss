@@ -30,9 +30,11 @@ body{
 
 .blocknano > div {
     margin-top: 5%;
-    width: 700px;
+    max-width: 700px;
     display: inline-block;
     text-align: left;
+    width: 100%;
+    padding: 20px;
 }
 .selectors > div:hover{
     color: #EA4C89;
