@@ -51,7 +51,7 @@ class QuestionsCrudController extends AbstractCrudController
                      $question->setQuestion($valueQuestion['question']);
                      foreach ($valueQuestion['options'] as $option){
                         $reponse = new Reponses();
-                        $reponse->setReponse($option['value']);
+                        $reponse->setReponse($option['text']);
                         if($valueQuestion['correctAnswer'] === $option['value']){
                             $reponse->setIsCorrect(true);
                         }
