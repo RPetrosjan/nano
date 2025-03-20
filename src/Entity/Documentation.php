@@ -25,6 +25,9 @@ class Documentation
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[ORM\ManyToOne(inversedBy: 'documentations')]
+    private ?TypeSection $typeSection = null;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -92,5 +95,17 @@ class Documentation
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    public function getTypeSection(): ?TypeSection
+    {
+        return $this->typeSection;
+    }
+
+    public function setTypeSection(?TypeSection $typeSection): self
+    {
+        $this->typeSection = $typeSection;
+
+        return $this;
     }
 }

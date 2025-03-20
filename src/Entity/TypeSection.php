@@ -21,9 +21,13 @@ class TypeSection
     #[ORM\OneToMany(mappedBy: 'typeSection', targetEntity: Questions::class)]
     private Collection $questions;
 
+    #[ORM\OneToMany(mappedBy: 'typeSection', targetEntity: Documentation::class)]
+    private Collection $documentations;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->documentations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,5 +79,35 @@ class TypeSection
 
     public function __toString(){
         return $this->title ?? '';
+    }
+
+    /**
+     * @return Collection<int, Documentation>
+     */
+    public function getDocumentations(): Collection
+    {
+        return $this->documentations;
+    }
+
+    public function addDocumentation(Documentation $documentation): self
+    {
+        if (!$this->documentations->contains($documentation)) {
+            $this->documentations->add($documentation);
+            $documentation->setTypeSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocumentation(Documentation $documentation): self
+    {
+        if ($this->documentations->removeElement($documentation)) {
+            // set the owning side to null (unless already changed)
+            if ($documentation->getTypeSection() === $this) {
+                $documentation->setTypeSection(null);
+            }
+        }
+
+        return $this;
     }
 }
