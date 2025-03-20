@@ -79,6 +79,18 @@ body{
     touch-action: manipulation;
 }
 
+pre {
+    display: inline-block;
+    font-size: .875em;
+    margin-bottom: 1rem;
+    overflow: auto;
+    color: red;
+    background-color: #1c1c1c;
+    padding: 8px 19px;
+    border-radius: 8px;
+    margin-top: 6px;
+}
+
 .offcanvas-body{
     font-size: 15px;
 }
