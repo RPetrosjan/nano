@@ -73,7 +73,7 @@ function getQuestion(){
             $('#qtotal').text(total);
             $('#doc').html(data.doc);
             $('.title').text(data.question);
-            $('.titleshadow').text(data.question);
+           /// $('.titleshadow').text(data.question);
             let htmlValues = '';
             data.reponses.forEach(function (data){
                 htmlValues += '<div correct="'+data.iscorrect+'">'+data.reponse+'</div>';
