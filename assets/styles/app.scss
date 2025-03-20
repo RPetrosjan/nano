@@ -83,6 +83,10 @@ body{
     font-size: 15px;
 }
 
+.offcanvas-body>div{
+    max-width: 1200px;
+}
+
 .title{
     border-bottom: 1px #ededed solid;
     position: relative;

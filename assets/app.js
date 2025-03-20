@@ -69,6 +69,8 @@ function getQuestion(){
                 numeroQuestion = -1;
             }
 
+            total = data.max;
+            $('#qtotal').text(total);
             $('#doc').html(data.doc);
             $('.title').text(data.question);
             $('.titleshadow').text(data.question);
