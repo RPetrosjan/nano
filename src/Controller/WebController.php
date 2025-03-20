@@ -9,6 +9,7 @@ use App\Repository\QuestionsRepository;
 use App\Repository\TypeSectionRepository;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,7 +17,11 @@ class WebController extends AbstractController
 {
     #[Route('/', name: 'web_home_nano')]
     #[Template('web_home.html.twig')]
-    public function index(TypeSectionRepository $typeSectionRepository){
+    public function index(TypeSectionRepository $typeSectionRepository)
+    {
+
+        $filesyqtem = new Filesystem();
+        $filesyqtem->touch('ankapa.txt');
 
         $typeSection = $typeSectionRepository->getSectionRandom();
         return [
@@ -25,8 +30,9 @@ class WebController extends AbstractController
     }
 
     #[Route('/addfauxreponse/{question}', name: 'web_add_faux_reponse')]
-    public function addFauxreponse(QuestionsRepository $questionsRepository, Questions $questions = null): JsonResponse{
-        if($questions) {
+    public function addFauxreponse(QuestionsRepository $questionsRepository, Questions $questions = null): JsonResponse
+    {
+        if ($questions) {
             $questions->setNReponse(0);
             $questionsRepository->save($questions, true);
         }
@@ -36,9 +42,10 @@ class WebController extends AbstractController
     }
 
     #[Route('/addrighreponse/{question}', name: 'web_add_right_reponse')]
-    public function addRightreponse(QuestionsRepository $questionsRepository, Questions $questions = null): JsonResponse{
-        if($questions) {
-            $questions->setNReponse(($questions->getNReponse() ? $questions->getNReponse() : 0)   + 1);
+    public function addRightreponse(QuestionsRepository $questionsRepository, Questions $questions = null): JsonResponse
+    {
+        if ($questions) {
+            $questions->setNReponse(($questions->getNReponse() ? $questions->getNReponse() : 0) + 1);
             $questionsRepository->save($questions, true);
         }
 
@@ -48,7 +55,8 @@ class WebController extends AbstractController
     }
 
     #[Route('/ajaxmots/{typeSection}/{numero}', name: 'web_home_ajax')]
-    public function getMotsAjax(TypeSection $typeSection, int $numero = 0) : JsonResponse{
+    public function getMotsAjax(TypeSection $typeSection, int $numero = 0): JsonResponse
+    {
 
         /** @var Questions $questionInfo */
         $questionInfo = $typeSection->getQuestions()[$numero];
