@@ -10,7 +10,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\RequestHandlerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,10 +84,18 @@ class QuestionsCrudController extends AbstractCrudController
             'required' => false,
         ]);
         $reponses = CollectionField::new('reponses')->useEntryCrudForm();
-        $documentation = AssociationField::new('documentation')->renderAsNativeWidget();
+
+        $documentation = AssociationField::new('documentation')
+            ->renderAsEmbeddedForm()
+            ->addWebpackEncoreEntries('froala-editor')
+        ;
+       /// $documentationText = TextEditorField::new('documentation', 'DocTxt');
 
         return [
-            $typeSection, $question, $documentation, $reponses, $yamlTextArea
+            FormField::addColumn()->setCssClass('col-xxl-4 row m-0 p-0'),
+            $typeSection, $question, $reponses, $yamlTextArea,
+            FormField::addColumn()->setCssClass('col-xxl-8 row m-0 p-0'),
+            $documentation->setColumns('col-12')
         ];
     }
 }

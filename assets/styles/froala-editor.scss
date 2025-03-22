@@ -1,0 +1,19 @@
+@import 'froala-editor/css/froala_style.min.css';
+@import "froala-editor/css/froala_editor.min.css";
+@import "froala-editor/css/plugins/code_view.min.css";
+@import "froala-editor/css/plugins/colors.min.css";
+@import "froala-editor/css/themes/dark.min.css";
+@import "dark";
+
+
+p{
+  margin: 0!important;
+}
+
+pre.codeblock-code {
+  background: var(--doc-codeblock-background);
+  flex: 1;
+  hyphens: none;
+  margin-bottom: 0;
+  padding: 5px 10px;
+}

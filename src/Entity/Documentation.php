@@ -94,7 +94,7 @@ class Documentation
 
     public function __toString(): string
     {
-        return $this->title;
+        return $this->title ?? '';
     }
 
     public function getTypeSection(): ?TypeSection

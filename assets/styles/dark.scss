@@ -1,0 +1,347 @@
+/* This contains all the styles needed to make code listing look good, including syntax highlighting */
+:root {
+  --font-family-system: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-monospace: 'JetBrains Mono', ui-monospace, 'Roboto Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --prose-max-width: 800px;
+  --ui-border-radius-sm: 0.1875rem;
+  --ui-border-radius-md: 0.375rem;
+  --ui-border-radius-lg: 0.75rem;
+  --ui-border-radius-full: 100%;
+  --ui-font-size-xs: 0.8125rem;
+  --ui-font-size-sm: 0.875rem;
+  --ui-font-size-md: 1rem;
+  --ui-font-size-lg: 1.15rem;
+  --ui-font-size-xl: 1.375rem;
+  --ui-font-size-2xl: 1.625rem;
+
+  --ui-page-bg: var(--white);
+  --ui-border-primary-color: var(--gray-500);
+  --ui-border-secondary-color: var(--gray-200);
+  --ui-border-tertiary-color: var(--gray-100);
+  --ui-bg-primary: var(--gray-300);
+  --ui-bg-secondary: var(--gray-100);
+  --ui-bg-tertiary: var(--gray-50);
+  --ui-text-color: var(--gray-800);
+  --ui-text-secondary-color: var(--gray-500);
+  --ui-text-tertiary-color: var(--gray-300);
+  --ui-text-danger-color: var(--rose-600);
+
+  --ui-link-color: #0066cc;
+  --ui-prose-link-underline-color: var(--blue-400);
+  --ui-heading-title-color: var(--gray-700);
+  --ui-heading-title-link-marker-color: var(--blue-300);
+
+  --ui-alert-bg: var(--blue-100);
+  --ui-alert-border-color: transparent;
+  --ui-alert-color: var(--text-color);
+  --ui-alert-warning-bg: var(--amber-100);
+  --ui-alert-warning-border-color: transparent;
+  --ui-alert-warning-color: var(--text-color);
+  --ui-alert-success-bg: var(--green-200);
+  --ui-alert-success-border-color: transparent;
+  --ui-alert-success-color: var(--green-800);
+  --ui-alert-danger-bg: var(--red-600);
+  --ui-alert-danger-border-color: transparent;
+  --ui-alert-danger-color: var(--red-50);
+
+  --ui-form-accent-color: var(--blue-600);
+  --ui-button-primary-bg: var(--blue-600);
+  --ui-button-primary-color: var(--white);
+  --ui-button-primary-border-color: transparent;
+  --ui-button-secondary-bg: var(--gray-100);
+  --ui-button-secondary-color: var(--gray-600);
+  --ui-button-secondary-border-color: var(--gray-300);
+
+  --ui-shadow: 0 4px 6px -1px rgba(156, 163, 175, 0.3), 0 2px 4px -2px rgba(156, 163, 175, 0.4);
+  --ui-shadow-lg: 0 10px 15px -3px rgba(156, 163, 175, 0.3), 0 4px 6px -4px rgba(156, 163, 175, 0.4);
+  --ui-shadow-xxl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --doc-codeblock-lines-color: var(--gray-500);
+  --doc-codeblock-lines-border-color: rgba(240, 246, 252, 0.15);
+  --doc-codeblock-background: #18202a;
+  --doc-codeblock-caption-bg: var(--gray-700);
+  --doc-codeblock-caption-color: var(--gray-300);
+  --doc-code-border-color: var(--gray-900);
+  --doc-terminal-background: var(--gray-900);
+  --doc-terminal-border-color: var(--gray-700);
+  --doc-configuration-block-tab-container-border: 1px solid var(--gray-600);
+  --doc-configuration-block-tab-background: var(--gray-900);
+  --doc-configuration-block-tab-border-color: var(--gray-600);
+  --doc-configuration-block-active-tab-background: var(--gray-600);
+  --doc-configuration-block-active-tab-color: var(--gray-200);
+  --doc-configuration-block-active-tab-shadow: 0 2px 0 var(--gray-900);
+  --doc-configuration-block-active-tab-border-color: var(--gray-700);
+  /* These values are based on GitHub dark theme */
+  --code-syntax-comment: #8b949e;
+  --code-syntax-keyword: #ff7b72;
+  --code-syntax-title: #ffa657;
+  --code-syntax-variable-other-marker: #79c0ff;
+  --code-syntax-function-title: #d2a8ff;
+  --code-syntax-string: #a5d6ff;
+  --code-syntax-attr: #7ee787;
+  --code-syntax-tag-name: #7ee787;
+  --code-syntax-tag-attr: #d2a8ff;
+  --code-syntax-addition-bg: rgba(46, 160, 67, 0.3);
+  --code-syntax-addition-border: rgba(46, 160, 67, 0.3);
+  --code-syntax-deletion-bg: rgba(218, 54, 51, 0.3);
+  --code-syntax-deletion-border: rgba(218, 54, 51, 0.3);
+}
+
+.hljs-comment {
+  color: var(--code-syntax-comment);
+}
+.hljs-keyword {
+  color: var(--code-syntax-keyword);
+}
+.hljs-title {
+  color: var(--code-syntax-title);
+}
+.hljs-variable-other-marker {
+  color: var(--code-syntax-variable-other-marker);
+}
+.hljs-function .hljs-title {
+  color: var(--code-syntax-function-title);
+}
+.hljs-string {
+  color: var(--code-syntax-string);
+}
+/* remove .hljs-php-attribute when all the docs have been rebuilt with the new highlighter */
+.hljs-attr,
+.hljs-php-attribute,
+.hljs-meta {
+  color: var(--code-syntax-attr);
+}
+.hljs-tag .hljs-name {
+  color: var(--code-syntax-tag-name);
+}
+.hljs-tag .hljs-attr {
+  color: var(--code-syntax-tag-attr);
+}
+.hljs-addition {
+  background: var(--code-syntax-addition-bg);
+  outline: 3px solid var(--code-syntax-addition-border);
+}
+.hljs-deletion {
+  background: var(--code-syntax-deletion-bg);
+  outline: 3px solid var(--code-syntax-deletion-border);
+}
+
+code,
+pre {
+  color: var(--text-color);
+  font-family: var(--font-family-monospace);
+  font-size: 13px;
+  font-synthesis: none;
+  font-variant-ligatures: none;
+  white-space: pre-wrap;
+}
+@media (min-width: 768px) {
+  code,
+  pre {
+    font-size: 14px;
+  }
+}
+code {
+  border-bottom: 1px solid var(--doc-code-border-color);
+  color: var(--code-syntax-title);
+}
+pre code {
+  border-bottom: 0;
+}
+
+.highlight-diff .highlight > pre {
+  padding-left: 0;
+}
+
+.codeblock {
+  position: relative;
+  display: grid;
+  margin-bottom: var(--margin-md);
+}
+@media (min-width: 992px) {
+  .codeblock {
+    margin-left: -21px;
+  }
+  .codeblock.codeblock-length-sm[data-loc='1'],
+  .codeblock.codeblock-length-sm[data-loc='2'] {
+    margin-left: 0;
+  }
+  .codeblock.codeblock-length-md {
+    margin-left: -30px;
+  }
+}
+.codeblock .codeblock-caption {
+  background: var(--doc-codeblock-caption-bg);
+  color: var(--doc-codeblock-caption-color);
+  font-size: 13px;
+  font-family: var(--font-family-monospace);
+  font-weight: 600;
+  margin-left: 23px;
+  padding: 4px 10px;
+  /* needed to truncate long text */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.codeblock[data-loc='1'] .codeblock-caption,
+.codeblock[data-loc='2'] .codeblock-caption {
+  margin-left: 0;
+}
+.codeblock.codeblock-length-md .codeblock-caption {
+  margin-left: 32px;
+}
+.codeblock pre {
+  line-height: 1.8;
+  white-space: pre;
+}
+
+.codeblock .btn-codeblock-copy-code {
+  background: var(--doc-codeblock-background);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--text-muted-color);
+  font-size: var(--font-size-sm);
+  line-height: 21px;
+  outline: none;
+  padding: 4px 6px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+.codeblock .btn-codeblock-copy-code:hover,
+.codeblock .btn-codeblock-copy-code:active,
+.codeblock .btn-codeblock-copy-code.btn-codeblock-copy-code-active {
+  color: var(--text-color);
+  border-color: var(--ui-border-primary-color);
+}
+.codeblock.codeblock-has-caption .btn-codeblock-copy-code {
+  top: 34px;
+}
+
+.codeblock-scroll {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+}
+.codeblock-lines {
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-bottom: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+
+  color: var(--doc-codeblock-lines-color);
+  border-right: 1px solid var(--doc-codeblock-lines-border-color);
+  font-size: 13px;
+  padding: 5px 10px 0 5px;
+  text-align: right;
+}
+@media (min-width: 768px) {
+  .codeblock-lines {
+    font-size: 14px;
+  }
+}
+/* the 'pre' is needed to give these styles more priority */
+pre.codeblock-lines {
+  /* needed because line numbers use a smaller font size, so they can't use the default
+/* line-height of `<pre>` elements, which is relative to font size */
+  line-height: 23.4px;
+}
+@media (min-width: 768px) {
+  pre.codeblock-lines {
+    line-height: 25.2px;
+  }
+}
+/* hide the line numbers of code blocks that only contain 1 or 2 lines */
+.codeblock[data-loc='1'] .codeblock-lines,
+.codeblock[data-loc='2'] .codeblock-lines {
+  display: none;
+}
+
+pre.codeblock-code {
+  background: var(--doc-codeblock-background);
+  flex: 1;
+  hyphens: none;
+  margin-bottom: 0;
+  padding: 5px 10px;
+}
+pre.codeblock-code code,
+.page-content .content pre.codeblock-code code {
+  background: transparent;
+  border-radius: 0;
+  border: 0;
+  font-size: 13px;
+  padding: 0;
+  word-break: unset;
+  white-space: pre;
+}
+@media (min-width: 768px) {
+  pre.codeblock-code code,
+  .ui-page-main-content pre.codeblock-code code {
+    font-size: 14px;
+  }
+}
+
+.configuration-block .configuration-tabs {
+  background-color: var(--doc-configuration-block-tab-background);
+  border-radius: 6px;
+  border: var(--doc-configuration-block-tab-container-border);
+  display: inline-flex;
+  font-size: var(--font-size-sm);
+  margin: 0 0 10px 0;
+  padding: 2px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* hide tabs when there's just one config format available */
+.configuration-block .configuration-tabs.configuration-tabs-length-1 {
+  display: none;
+}
+
+.configuration-block .configuration-tabs li,
+.configuration-block .configuration-tabs button {
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  padding: 0 15px;
+  position: relative;
+  text-align: center;
+}
+.configuration-block .configuration-tabs li::marker {
+  content: '';
+}
+
+.configuration-block .configuration-tabs li::before,
+.configuration-block .configuration-tabs button::before {
+  content: '';
+  width: 1px;
+  background: var(--doc-configuration-block-tab-border-color);
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+}
+
+.configuration-block .configuration-tabs li:first-child::before,
+.configuration-block .configuration-tabs button:first-child::before,
+.configuration-block .configuration-tabs li[data-active]::before,
+.configuration-block .configuration-tabs button[data-active]::before,
+.configuration-block .configuration-tabs li[data-active] + li::before,
+.configuration-block .configuration-tabs button[data-active] + li::before,
+.configuration-block .configuration-tabs li[data-active] + button::before,
+.configuration-block .configuration-tabs button[data-active] + button::before {
+  width: 0;
+}
+
+.configuration-block .configuration-tabs li[data-active],
+.configuration-block .configuration-tabs button[data-active] {
+  background-color: var(--doc-configuration-block-active-tab-background);
+  border-radius: 6px;
+  border: 1px solid var(--doc-configuration-block-active-tab-border-color);
+  box-shadow: var(--doc-configuration-block-active-tab-shadow);
+  color: var(--doc-configuration-block-active-tab-color);
+  position: relative;
+  z-index: 1;
+}

@@ -20,8 +20,8 @@ class ReponsesCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('reponse'),
-            BooleanField::new('isCorrect'),
+            TextField::new('reponse')->setColumns('col-12'),
+            BooleanField::new('isCorrect')->setColumns('col-12'),
         ];
     }
 }

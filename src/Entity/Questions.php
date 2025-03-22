@@ -30,8 +30,10 @@ class Questions
     #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'questions')]
     private ?TypeSection $typeSection = null;
 
-    #[ORM\ManyToOne(inversedBy: 'questions')]
+    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'questions')]
     private ?Documentation $documentation = null;
+
+    private $docedit = null;
 
     public function __construct()
     {
@@ -151,4 +153,13 @@ class Questions
 
         return $this;
     }
+
+    /**
+     * @return null
+     */
+    public function getDocedit()
+    {
+        return $this->documentation->getText();
+    }
+
 }
