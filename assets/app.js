@@ -94,7 +94,6 @@ function getQuestion(){
 
 window.onload = function() {
 
-
     if (window.jQuery) {
         getQuestion();
         makeProgress();
