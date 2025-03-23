@@ -9,6 +9,9 @@
 p{
   margin: 0!important;
 }
+.fr-wrapper>div[style="z-index:9999;width:100%;position:relative"]:first-of-type {
+  display: none;
+}
 
 pre.codeblock-code {
   background: var(--doc-codeblock-background);
