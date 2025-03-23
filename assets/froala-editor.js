@@ -1,4 +1,5 @@
 import './styles/froala-editor.scss';
+import $ from "jquery";
 
 
 let FroalaEditor = require('froala-editor');
@@ -22,4 +23,7 @@ var editor = new FroalaEditor('#Questions_documentation_text', {
         }
     }
 });
+
+alert('kuku');
+console.log($('div:contains("Unlicensed")'));
 

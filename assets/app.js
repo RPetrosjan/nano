@@ -8,7 +8,8 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 
-global.$ = require('jquery');
+import $ from "jquery";
+global.$ = $;
 
 
 // start the Stimulus application
@@ -85,13 +86,14 @@ function getQuestion(){
             $('.selectors').html(htmlValues);
             reDom();
         });
+
+
     }
 
 }
 
 window.onload = function() {
 
-    $('div:contains("www.froala.com")').addClass('d-none');
 
     if (window.jQuery) {
         getQuestion();
