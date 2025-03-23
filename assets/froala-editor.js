@@ -27,7 +27,7 @@ var editor = new FroalaEditor('#Questions_documentation_text', {
 window.onload = function() {
     setTimeout(function (){
         alert('kuku');
-     ///   $('div:contains("Unlicensed")').addClass('d-none');
+        console.log($('div:contains("Unlicensed copy of the Froala Editor. Use it legally by purchasing a license.")'));
     }, 500);
 }
 
