@@ -9,7 +9,8 @@
 p{
   margin: 0!important;
 }
-.fr-wrapper>div[style="z-index:9999;width:100%;position:relative"]:first-of-type {
+
+.fr-wrapper>div:first-of-type {
   display: none;
 }
 
