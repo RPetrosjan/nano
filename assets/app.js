@@ -87,6 +87,9 @@ function getQuestion(){
 }
 
 window.onload = function() {
+
+    console.log($('div:contains("www.froala.com")'));
+
     if (window.jQuery) {
         getQuestion();
         makeProgress();
