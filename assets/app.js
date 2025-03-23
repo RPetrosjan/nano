@@ -91,7 +91,7 @@ function getQuestion(){
 
 window.onload = function() {
 
-    console.log($('div:contains("www.froala.com")'));
+    $('div:contains("www.froala.com")').addClass('d-none');
 
     if (window.jQuery) {
         getQuestion();
