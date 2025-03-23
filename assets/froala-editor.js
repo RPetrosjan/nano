@@ -10,10 +10,12 @@ require('froala-editor/js/plugins/colors.min');
 require('froala-editor/js/plugins/fullscreen.min');
 require('froala-editor/js/plugins/font_size.min');
 require('froala-editor/js/plugins/font_family.min');
+require('froala-editor/js/plugins/link.min');
 
 
 var editor = new FroalaEditor('#Questions_documentation_text', {
-    pluginsEnabled: ['codeView', 'inlineClass', 'markdown', 'colors', 'fullscreen', 'fontSize', 'fontFamily'],
+    theme: 'dark',
+    pluginsEnabled: ['codeView', 'inlineClass', 'markdown', 'colors', 'fullscreen', 'fontSize', 'fontFamily', 'link'],
     codeViewKeepActiveButtons: ['selectAll'],
     events: {
         'codeView.update': function () {
