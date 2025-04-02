@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Documentation;
 use App\Entity\Questions;
 use App\Entity\Reponses;
 use App\Entity\TypeSection;
@@ -24,6 +25,15 @@ class WebController extends AbstractController
         return [
             'typeSection' => $typeSection,
             'allTypeSections' => $allTypeSections,
+        ];
+    }
+
+    #[Route('/document/{documentation}', name: 'web_type_documentation')]
+    #[Template('web_type_documentation.html.twig')]
+    public function documentation(Documentation $documentation)
+    {
+        return [
+            'documentation' => $documentation,
         ];
     }
 

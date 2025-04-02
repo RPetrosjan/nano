@@ -5,7 +5,9 @@
             <h1>{{ typeSection.title }}</h1>
             <div class="list-group list-group-flush">
                 {% for documentations in typeSection.documentations %}
-                    <a class="list-group-item list-group-item-action">{{ documentations.title }}</a>
+                    <a href="{{ path('web_type_documentation', {
+                        'documentation': documentations.id
+                    }) }}" class="list-group-item list-group-item-action">{{ documentations.title }}</a>
                 {% endfor %}
             </div>
         </div>
