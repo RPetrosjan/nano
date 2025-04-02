@@ -19,13 +19,11 @@ class WebController extends AbstractController
     #[Template('web_home.html.twig')]
     public function index(TypeSectionRepository $typeSectionRepository)
     {
-
-        $filesyqtem = new Filesystem();
-        $filesyqtem->touch('ankapa.txt');
-
         $typeSection = $typeSectionRepository->getSectionRandom();
+        $allTypeSections = $typeSectionRepository->findAll();
         return [
             'typeSection' => $typeSection,
+            'allTypeSections' => $allTypeSections,
         ];
     }
 
