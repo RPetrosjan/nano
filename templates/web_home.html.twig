@@ -11,7 +11,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         {% for typeSections in allTypeSections %}
-                            <li><a class="dropdown-item" href="#">{{ typeSections.title }}</a></li>
+                            <li><a class="dropdown-item" href="{{ path('web_type_section', {'typeSection' : typeSections.id}) }}">{{ typeSections.title }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

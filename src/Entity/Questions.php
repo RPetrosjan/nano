@@ -16,7 +16,7 @@ class Questions
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $question = null;
+        private ?string $question = null;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Results::class)]
     private Collection $results;

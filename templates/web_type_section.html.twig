@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="blocknano">
+        <div>
+            <h1>{{ typeSection.title }}</h1>
+            <div class="list-group list-group-flush">
+                {% for documentations in typeSection.documentations %}
+                    <a class="list-group-item list-group-item-action">{{ documentations.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

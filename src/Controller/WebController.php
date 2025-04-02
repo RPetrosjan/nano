@@ -27,6 +27,15 @@ class WebController extends AbstractController
         ];
     }
 
+    #[Route('/section/{typeSection}', name: 'web_type_section')]
+    #[Template('web_type_section.html.twig')]
+    public function typeSection(TypeSection $typeSection)
+    {
+        return [
+            'typeSection' => $typeSection,
+        ];
+    }
+
     #[Route('/addfauxreponse/{question}', name: 'web_add_faux_reponse')]
     public function addFauxreponse(QuestionsRepository $questionsRepository, Questions $questions = null): JsonResponse
     {
