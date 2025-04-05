@@ -37,6 +37,17 @@ class WebController extends AbstractController
         ];
     }
 
+    #[Route('/section/qcm/{typeSection}', name: 'web_type_qcm')]
+    #[Template('web_home.html.twig')]
+    public function getQCMTypeSection(TypeSection $typeSection, TypeSectionRepository $typeSectionRepository)
+    {
+        $allTypeSections = $typeSectionRepository->findAll();
+        return [
+            'typeSection' => $typeSection,
+            'allTypeSections' => $allTypeSections,
+        ];
+    }
+
     #[Route('/section/{typeSection}', name: 'web_type_section')]
     #[Template('web_type_section.html.twig')]
     public function typeSection(TypeSection $typeSection)

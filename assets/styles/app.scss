@@ -13,6 +13,11 @@ p{
     margin: 0!important;
 }
 
+a.list-group-item.list-group-item-action {
+    font-size: 13px;
+    border-bottom: 0;
+}
+
 .bodydiv{
     background-image: url("../images/bg_body_paris.jpg");
     background-position: left bottom;
